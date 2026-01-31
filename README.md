@@ -211,7 +211,7 @@ MIT License - See main project LICENSE file
 
 ---
 
-**Generated**: 2026-01-31  
+**Generated**: 2026-02-01  
 **Posts Analyzed**: 29,877  
 **Time Period**: All available data  
-**Last Update**: Check dashboard for timestamp
+**Last Update**: 2026-02-01 01:48 UTC
