@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moltbook Data Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .badge-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #ed8936;
+            color: white;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            background: #e0e0e0;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .insight-box h3 {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦞 Moltbook Data Analysis Dashboard</h1>
+            <p class="subtitle">Comprehensive insights from 30,000+ posts</p>
+            <p class="subtitle" id="lastUpdated">Loading...</p>
+        </header>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="loading">Loading statistics...</div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Key Insights</h2>
+            <div id="insights">
+                <div class="loading">Loading insights...</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📈 Time Series Analysis</h2>
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('daily')">Daily Posts</button>
+                <button class="tab" onclick="showTab('hourly')">Hourly Pattern</button>
+                <button class="tab" onclick="showTab('weekly')">Day of Week</button>
+            </div>
+            <div id="daily" class="tab-content active">
+                <div class="chart-container">
+                    <canvas id="dailyChart"></canvas>
+                </div>
+            </div>
+            <div id="hourly" class="tab-content">
+                <div class="chart-container">
+                    <canvas id="hourlyChart"></canvas>
+                </div>
+            </div>
+            <div id="weekly" class="tab-content">
+                <div class="chart-container">
+                    <canvas id="weeklyChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏆 Top Posts</h2>
+            <div class="table-container">
+                <table id="topPostsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Submolt</th>
+                            <th>Upvotes</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="loading">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👥 Top Authors</h2>
+            <div class="tabs">
+                <button class="tab active" onclick="showAuthorTab('engagement')">By Engagement</button>
+                <button class="tab" onclick="showAuthorTab('posts')">By Posts</button>
+                <button class="tab" onclick="showAuthorTab('consistency')">By Consistency</button>
+            </div>
+            <div id="engagement" class="tab-content active">
+                <div class="table-container">
+                    <table id="authorsEngagementTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Author</th>
+                                <th>Engagement Rate</th>
+                                <th>Posts</th>
+                                <th>Avg Upvotes</th>
+                                <th>Success Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="6" class="loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="posts" class="tab-content">
+                <div class="table-container">
+                    <table id="authorsPostsTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Author</th>
+                                <th>Total Posts</th>
+                                <th>Avg Upvotes</th>
+                                <th>Posts/Day</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="5" class="loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="consistency" class="tab-content">
+                <div class="table-container">
+                    <table id="authorsConsistencyTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Author</th>
+                                <th>Consistency Score</th>
+                                <th>Posts</th>
+                                <th>Avg Upvotes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="5" class="loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏘️ Top Submolts</h2>
+            <div class="chart-container">
+                <canvas id="submoltsChart"></canvas>
+            </div>
+            <div class="table-container">
+                <table id="submoltsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Submolt</th>
+                            <th>Posts</th>
+                            <th>Authors</th>
+                            <th>Avg Upvotes</th>
+                            <th>Total Engagement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="loading">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌐 Network Analysis</h2>
+            <div class="stats-grid" id="networkStats">
+                <div class="loading">Loading network data...</div>
+            </div>
+            <div class="table-container">
+                <h3>Top Cross-Posters</h3>
+                <table id="crossPostersTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Author</th>
+                            <th>Submolts</th>
+                            <th>Active In</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="4" class="loading">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated with ❤️ using Python, HuggingFace, and Metal GPU acceleration</p>
+            <p>Data analysis powered by pandas, scikit-learn, and networkx</p>
+        </footer>
+    </div>
+
+    <script>
+        let dashboardData = null;
+
+        // Load data
+        fetch('dashboard_data.json')
+            .then(response => response.json())
+            .then(data => {
+                dashboardData = data;
+                initializeDashboard();
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+                document.body.innerHTML = '<div class="container"><div class="section"><h2>Error loading data</h2><p>Please make sure dashboard_data.json is in the same directory.</p></div></div>';
+            });
+
+        function initializeDashboard() {
+            renderStats();
+            renderInsights();
+            renderCharts();
+            renderTopPosts();
+            renderTopAuthors();
+            renderTopSubmolts();
+            renderNetworkData();
+            document.getElementById('lastUpdated').textContent = `Last updated: ${new Date(dashboardData.generated_at).toLocaleString()}`;
+        }
+
+        function renderStats() {
+            const stats = dashboardData.overview;
+            const html = `
+                <div class="stat-card">
+                    <div class="stat-label">Total Posts</div>
+                    <div class="stat-value">${stats.total_posts.toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Authors</div>
+                    <div class="stat-value">${stats.total_authors.toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Submolts</div>
+                    <div class="stat-value">${stats.total_submolts.toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Upvotes</div>
+                    <div class="stat-value">${stats.total_upvotes.toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Avg Upvotes/Post</div>
+                    <div class="stat-value">${stats.avg_upvotes_per_post.toFixed(1)}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Comments</div>
+                    <div class="stat-value">${stats.total_comments.toLocaleString()}</div>
+                </div>
+            `;
+            document.getElementById('statsGrid').innerHTML = html;
+        }
+
+        function renderInsights() {
+            const insights = dashboardData.insights;
+            const html = `
+                <div class="insight-box">
+                    <h3>🎯 Engagement Insights</h3>
+                    <p>• Viral threshold (top 10%): <strong>${insights.engagement.viral_threshold.toFixed(0)} upvotes</strong></p>
+                    <p>• Top 1% threshold: <strong>${insights.engagement.top_1_percent_threshold.toFixed(0)} upvotes</strong></p>
+                    <p>• Median engagement: <strong>${insights.engagement.median_upvotes.toFixed(1)} upvotes</strong></p>
+                </div>
+                <div class="insight-box">
+                    <h3>👥 Author Insights</h3>
+                    <p>• Active authors (5+ posts): <strong>${insights.authors.active_5plus.toLocaleString()}</strong> (${(insights.authors.active_5plus/insights.authors.total*100).toFixed(1)}%)</p>
+                    <p>• Cross-posting rate: <strong>${insights.authors.cross_posting_rate.toFixed(1)}%</strong></p>
+                    <p>• Avg posts per author: <strong>${insights.authors.avg_posts_per_author.toFixed(1)}</strong></p>
+                </div>
+                <div class="insight-box">
+                    <h3>⏰ Timing Insights</h3>
+                    <p>• Best hour to post: <strong>${insights.timing.best_hour}:00 UTC</strong></p>
+                    <p>• Best day to post: <strong>${insights.timing.best_day}</strong></p>
+                </div>
+            `;
+            document.getElementById('insights').innerHTML = html;
+        }
+
+        function renderCharts() {
+            // Daily posts chart
+            const dailyData = dashboardData.time_series.daily_posts;
+            new Chart(document.getElementById('dailyChart'), {
+                type: 'line',
+                data: {
+                    labels: dailyData.map(d => d.date),
+                    datasets: [{
+                        label: 'Posts per Day',
+                        data: dailyData.map(d => d.id),
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Hourly pattern chart
+            const hourlyData = dashboardData.time_series.hourly_pattern;
+            new Chart(document.getElementById('hourlyChart'), {
+                type: 'bar',
+                data: {
+                    labels: hourlyData.map(d => `${d.hour}:00`),
+                    datasets: [{
+                        label: 'Avg Upvotes by Hour',
+                        data: hourlyData.map(d => d.upvotes),
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Weekly pattern chart
+            const weeklyData = dashboardData.time_series.day_of_week_pattern;
+            new Chart(document.getElementById('weeklyChart'), {
+                type: 'bar',
+                data: {
+                    labels: weeklyData.map(d => d.day_of_week),
+                    datasets: [{
+                        label: 'Avg Upvotes by Day',
+                        data: weeklyData.map(d => d.upvotes),
+                        backgroundColor: '#764ba2'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // Submolts chart
+            const submoltsData = dashboardData.top_submolts.slice(0, 15);
+            new Chart(document.getElementById('submoltsChart'), {
+                type: 'bar',
+                data: {
+                    labels: submoltsData.map(s => s.name),
+                    datasets: [{
+                        label: 'Post Count',
+                        data: submoltsData.map(s => s.post_count),
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        function renderTopPosts() {
+            const posts = dashboardData.top_posts;
+            const tbody = document.querySelector('#topPostsTable tbody');
+            tbody.innerHTML = posts.map((post, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${post.title.substring(0, 80)}${post.title.length > 80 ? '...' : ''}</td>
+                    <td>${post.author_name}</td>
+                    <td><span class="badge badge-primary">${post.submolt_display_name}</span></td>
+                    <td><strong>${post.upvotes.toLocaleString()}</strong></td>
+                    <td>${post.comment_count}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderTopAuthors() {
+            // By engagement
+            const engagement = dashboardData.top_authors.by_engagement;
+            document.querySelector('#authorsEngagementTable tbody').innerHTML = engagement.map((author, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td><strong>${author.name}</strong></td>
+                    <td>${author.engagement_rate.toFixed(1)}</td>
+                    <td>${author.total_posts}</td>
+                    <td>${author.avg_upvotes.toFixed(1)}</td>
+                    <td><span class="badge badge-success">${author.success_rate.toFixed(1)}%</span></td>
+                </tr>
+            `).join('');
+
+            // By posts
+            const posts = dashboardData.top_authors.by_posts;
+            document.querySelector('#authorsPostsTable tbody').innerHTML = posts.map((author, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td><strong>${author.name}</strong></td>
+                    <td>${author.total_posts}</td>
+                    <td>${author.avg_upvotes.toFixed(1)}</td>
+                    <td>${author.posts_per_day.toFixed(2)}</td>
+                </tr>
+            `).join('');
+
+            // By consistency
+            const consistency = dashboardData.top_authors.by_consistency;
+            document.querySelector('#authorsConsistencyTable tbody').innerHTML = consistency.map((author, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td><strong>${author.name}</strong></td>
+                    <td>${author.consistency_score.toFixed(3)}</td>
+                    <td>${author.total_posts}</td>
+                    <td>${author.avg_upvotes.toFixed(1)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderTopSubmolts() {
+            const submolts = dashboardData.top_submolts;
+            const tbody = document.querySelector('#submoltsTable tbody');
+            tbody.innerHTML = submolts.map((submolt, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td><strong>${submolt.name}</strong></td>
+                    <td>${submolt.post_count.toLocaleString()}</td>
+                    <td>${submolt.unique_authors}</td>
+                    <td>${submolt.avg_upvotes.toFixed(1)}</td>
+                    <td>${(submolt.total_upvotes + submolt.total_comments).toLocaleString()}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderNetworkData() {
+            const network = dashboardData.network;
+            const stats = network.stats;
+            
+            const html = `
+                <div class="stat-card">
+                    <div class="stat-label">Network Nodes</div>
+                    <div class="stat-value">${(stats.total_authors + stats.total_submolts).toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Connections</div>
+                    <div class="stat-value">${stats.total_connections.toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Cross-Posters</div>
+                    <div class="stat-value">${stats.cross_posters.toLocaleString()}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Bridge Authors</div>
+                    <div class="stat-value">${stats.bridge_authors}</div>
+                </div>
+            `;
+            document.getElementById('networkStats').innerHTML = html;
+
+            // Cross-posters table
+            const crossPosters = network.top_cross_posters;
+            document.querySelector('#crossPostersTable tbody').innerHTML = crossPosters.map((cp, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td><strong>${cp.author}</strong></td>
+                    <td><span class="badge badge-warning">${cp.submolt_count}</span></td>
+                    <td>${cp.submolts.join(', ')}${cp.submolt_count > 5 ? '...' : ''}</td>
+                </tr>
+            `).join('');
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showAuthorTab(tabName) {
+            document.querySelectorAll('#engagement, #posts, #consistency').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
