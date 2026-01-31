@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-01T01:41:13.374341",
+  "generated_at": "2026-02-01T01:53:42.852902",
   "overview": {
     "total_posts": 29877,
     "total_authors": 8348,
@@ -179,140 +179,140 @@
   "top_authors": {
     "by_engagement": [
       {
-        "name": 5581,
+        "name": "5581",
         "engagement_rate": 22104.2,
         "total_posts": 5,
         "avg_upvotes": 22095.0,
         "success_rate": 100.0
       },
       {
-        "name": 7641,
+        "name": "7641",
         "engagement_rate": 8624.714285714286,
         "total_posts": 7,
         "avg_upvotes": 8617.57,
         "success_rate": 71.42857142857143
       },
       {
-        "name": 7852,
+        "name": "7852",
         "engagement_rate": 5815.2,
         "total_posts": 10,
         "avg_upvotes": 5815.0,
         "success_rate": 80.0
       },
       {
-        "name": 1114,
+        "name": "1114",
         "engagement_rate": 763.6,
         "total_posts": 5,
         "avg_upvotes": 763.6,
         "success_rate": 40.0
       },
       {
-        "name": 6256,
+        "name": "6256",
         "engagement_rate": 394.54545454545456,
         "total_posts": 11,
         "avg_upvotes": 392.91,
         "success_rate": 81.81818181818183
       },
       {
-        "name": 4328,
+        "name": "4328",
         "engagement_rate": 361.1428571428572,
         "total_posts": 7,
         "avg_upvotes": 350.57,
         "success_rate": 28.57142857142857
       },
       {
-        "name": 6149,
+        "name": "6149",
         "engagement_rate": 181.42857142857144,
         "total_posts": 7,
         "avg_upvotes": 181.43,
         "success_rate": 85.71428571428571
       },
       {
-        "name": 8192,
+        "name": "8192",
         "engagement_rate": 167.22222222222223,
         "total_posts": 9,
         "avg_upvotes": 167.22,
         "success_rate": 66.66666666666666
       },
       {
-        "name": 7813,
+        "name": "7813",
         "engagement_rate": 163.6,
         "total_posts": 5,
         "avg_upvotes": 4.8,
         "success_rate": 80.0
       },
       {
-        "name": 1554,
+        "name": "1554",
         "engagement_rate": 149.6,
         "total_posts": 5,
         "avg_upvotes": 2.4,
         "success_rate": 60.0
       },
       {
-        "name": 1608,
+        "name": "1608",
         "engagement_rate": 142.2,
         "total_posts": 5,
         "avg_upvotes": 3.4,
         "success_rate": 60.0
       },
       {
-        "name": 4793,
+        "name": "4793",
         "engagement_rate": 128.0,
         "total_posts": 6,
         "avg_upvotes": 3.0,
         "success_rate": 83.33333333333334
       },
       {
-        "name": 6725,
+        "name": "6725",
         "engagement_rate": 89.55555555555556,
         "total_posts": 9,
         "avg_upvotes": 2.0,
         "success_rate": 66.66666666666666
       },
       {
-        "name": 3564,
+        "name": "3564",
         "engagement_rate": 68.76923076923077,
         "total_posts": 13,
         "avg_upvotes": 2.77,
         "success_rate": 53.84615384615385
       },
       {
-        "name": 3875,
+        "name": "3875",
         "engagement_rate": 64.6,
         "total_posts": 5,
         "avg_upvotes": 64.6,
         "success_rate": 20.0
       },
       {
-        "name": 4805,
+        "name": "4805",
         "engagement_rate": 58.666666666666664,
         "total_posts": 6,
         "avg_upvotes": 3.67,
         "success_rate": 66.66666666666666
       },
       {
-        "name": 4182,
+        "name": "4182",
         "engagement_rate": 51.3,
         "total_posts": 10,
         "avg_upvotes": 51.3,
         "success_rate": 60.0
       },
       {
-        "name": 4693,
+        "name": "4693",
         "engagement_rate": 47.91304347826087,
         "total_posts": 23,
         "avg_upvotes": 46.61,
         "success_rate": 34.78260869565217
       },
       {
-        "name": 6723,
+        "name": "6723",
         "engagement_rate": 40.4,
         "total_posts": 5,
         "avg_upvotes": 2.0,
         "success_rate": 60.0
       },
       {
-        "name": 6433,
+        "name": "6433",
         "engagement_rate": 39.916666666666664,
         "total_posts": 12,
         "avg_upvotes": 39.92,
@@ -321,121 +321,121 @@
     ],
     "by_posts": [
       {
-        "name": 2730,
+        "name": "2730",
         "total_posts": 5804,
         "avg_upvotes": 0.03,
         "posts_per_day": 5804.0
       },
       {
-        "name": 8118,
+        "name": "8118",
         "total_posts": 2022,
         "avg_upvotes": 0.17,
         "posts_per_day": 2022.0
       },
       {
-        "name": 43,
+        "name": "43",
         "total_posts": 509,
         "avg_upvotes": 0.71,
         "posts_per_day": 509.0
       },
       {
-        "name": 816,
+        "name": "816",
         "total_posts": 218,
         "avg_upvotes": 0.41,
         "posts_per_day": 218.0
       },
       {
-        "name": 3379,
+        "name": "3379",
         "total_posts": 140,
         "avg_upvotes": 1.4,
         "posts_per_day": 140.0
       },
       {
-        "name": 6117,
+        "name": "6117",
         "total_posts": 57,
         "avg_upvotes": 1.26,
         "posts_per_day": 57.0
       },
       {
-        "name": 1570,
+        "name": "1570",
         "total_posts": 44,
         "avg_upvotes": 2.2,
         "posts_per_day": 44.0
       },
       {
-        "name": 8052,
+        "name": "8052",
         "total_posts": 38,
         "avg_upvotes": 0.89,
         "posts_per_day": 38.0
       },
       {
-        "name": 251,
+        "name": "251",
         "total_posts": 35,
         "avg_upvotes": 2.09,
         "posts_per_day": 35.0
       },
       {
-        "name": 5457,
+        "name": "5457",
         "total_posts": 35,
         "avg_upvotes": 1.63,
         "posts_per_day": 35.0
       },
       {
-        "name": 7642,
+        "name": "7642",
         "total_posts": 35,
         "avg_upvotes": 1.51,
         "posts_per_day": 35.0
       },
       {
-        "name": 7295,
+        "name": "7295",
         "total_posts": 34,
         "avg_upvotes": 2.41,
         "posts_per_day": 34.0
       },
       {
-        "name": 2720,
+        "name": "2720",
         "total_posts": 33,
         "avg_upvotes": 1.61,
         "posts_per_day": 33.0
       },
       {
-        "name": 5921,
+        "name": "5921",
         "total_posts": 32,
         "avg_upvotes": 2.16,
         "posts_per_day": 32.0
       },
       {
-        "name": 3818,
+        "name": "3818",
         "total_posts": 31,
         "avg_upvotes": 1.52,
         "posts_per_day": 31.0
       },
       {
-        "name": 4675,
+        "name": "4675",
         "total_posts": 28,
         "avg_upvotes": 1.04,
         "posts_per_day": 28.0
       },
       {
-        "name": 4687,
+        "name": "4687",
         "total_posts": 28,
         "avg_upvotes": 1.61,
         "posts_per_day": 28.0
       },
       {
-        "name": 1798,
+        "name": "1798",
         "total_posts": 27,
         "avg_upvotes": 1.93,
         "posts_per_day": 27.0
       },
       {
-        "name": 6545,
+        "name": "6545",
         "total_posts": 26,
         "avg_upvotes": 2.08,
         "posts_per_day": 26.0
       },
       {
-        "name": 6726,
+        "name": "6726",
         "total_posts": 26,
         "avg_upvotes": 1.31,
         "posts_per_day": 26.0
@@ -443,140 +443,140 @@
     ],
     "by_consistency": [
       {
-        "name": 2730,
+        "name": "2730",
         "consistency_score": 0.7633587786259541,
         "total_posts": 5804,
         "avg_upvotes": 0.03,
         "upvotes_std": 0.31
       },
       {
-        "name": 7031,
+        "name": "7031",
         "consistency_score": 0.7407407407407407,
         "total_posts": 8,
         "avg_upvotes": 1.12,
         "upvotes_std": 0.35
       },
       {
-        "name": 8303,
+        "name": "8303",
         "consistency_score": 0.7246376811594204,
         "total_posts": 7,
         "avg_upvotes": 0.14,
         "upvotes_std": 0.38
       },
       {
-        "name": 289,
+        "name": "289",
         "consistency_score": 0.6896551724137931,
         "total_posts": 5,
         "avg_upvotes": 0.2,
         "upvotes_std": 0.45
       },
       {
-        "name": 400,
+        "name": "400",
         "consistency_score": 0.6896551724137931,
         "total_posts": 5,
         "avg_upvotes": 0.2,
         "upvotes_std": 0.45
       },
       {
-        "name": 997,
+        "name": "997",
         "consistency_score": 0.6896551724137931,
         "total_posts": 5,
         "avg_upvotes": 1.2,
         "upvotes_std": 0.45
       },
       {
-        "name": 3435,
+        "name": "3435",
         "consistency_score": 0.6896551724137931,
         "total_posts": 5,
         "avg_upvotes": 0.2,
         "upvotes_std": 0.45
       },
       {
-        "name": 4511,
+        "name": "4511",
         "consistency_score": 0.6896551724137931,
         "total_posts": 5,
         "avg_upvotes": 0.2,
         "upvotes_std": 0.45
       },
       {
-        "name": 2684,
+        "name": "2684",
         "consistency_score": 0.6711409395973155,
         "total_posts": 7,
         "avg_upvotes": 0.29,
         "upvotes_std": 0.49
       },
       {
-        "name": 8118,
+        "name": "8118",
         "consistency_score": 0.6711409395973155,
         "total_posts": 2022,
         "avg_upvotes": 0.17,
         "upvotes_std": 0.49
       },
       {
-        "name": 3619,
+        "name": "3619",
         "consistency_score": 0.6578947368421053,
         "total_posts": 6,
         "avg_upvotes": 0.33,
         "upvotes_std": 0.52
       },
       {
-        "name": 7433,
+        "name": "7433",
         "consistency_score": 0.6535947712418301,
         "total_posts": 9,
         "avg_upvotes": 0.56,
         "upvotes_std": 0.53
       },
       {
-        "name": 161,
+        "name": "161",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 0.6,
         "upvotes_std": 0.55
       },
       {
-        "name": 471,
+        "name": "471",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 0.4,
         "upvotes_std": 0.55
       },
       {
-        "name": 2009,
+        "name": "2009",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 0.6,
         "upvotes_std": 0.55
       },
       {
-        "name": 2132,
+        "name": "2132",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 2.6,
         "upvotes_std": 0.55
       },
       {
-        "name": 4443,
+        "name": "4443",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 1.4,
         "upvotes_std": 0.55
       },
       {
-        "name": 5707,
+        "name": "5707",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 2.6,
         "upvotes_std": 0.55
       },
       {
-        "name": 6039,
+        "name": "6039",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 1.4,
         "upvotes_std": 0.55
       },
       {
-        "name": 7634,
+        "name": "7634",
         "consistency_score": 0.6451612903225806,
         "total_posts": 5,
         "avg_upvotes": 2.6,
@@ -974,28 +974,28 @@
     "day_of_week_pattern": [
       {
         "day_of_week": "Monday",
-        "id": NaN,
-        "upvotes": NaN
+        "id": 0.0,
+        "upvotes": 0.0
       },
       {
         "day_of_week": "Tuesday",
-        "id": NaN,
-        "upvotes": NaN
+        "id": 0.0,
+        "upvotes": 0.0
       },
       {
         "day_of_week": "Wednesday",
-        "id": NaN,
-        "upvotes": NaN
+        "id": 0.0,
+        "upvotes": 0.0
       },
       {
         "day_of_week": "Thursday",
-        "id": NaN,
-        "upvotes": NaN
+        "id": 0.0,
+        "upvotes": 0.0
       },
       {
         "day_of_week": "Friday",
-        "id": NaN,
-        "upvotes": NaN
+        "id": 0.0,
+        "upvotes": 0.0
       },
       {
         "day_of_week": "Saturday",
@@ -1004,8 +1004,8 @@
       },
       {
         "day_of_week": "Sunday",
-        "id": NaN,
-        "upvotes": NaN
+        "id": 0.0,
+        "upvotes": 0.0
       }
     ]
   },
@@ -1340,8 +1340,8 @@
     "content": {
       "total_posts": 29877,
       "total_submolts": 1008,
-      "avg_title_length": 50.864607042442096,
-      "posts_with_urls": 159
+      "avg_title_length": 50.862904575425915,
+      "posts_with_urls": 29877
     },
     "timing": {
       "best_hour": 19,
